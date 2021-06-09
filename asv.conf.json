@@ -11,7 +11,7 @@
 
     // The URL or local path of the source code repository for the
     // project being benchmarked
-    "repo": "https://github.com/AGaliciaMartinez/qutip-tensorflow.git",
+    "repo": "local",
 
     // The Python project's subdirectory in your repo.  If missing or
     // the empty string, the project is assumed to be located at the root
@@ -30,14 +30,14 @@
 
     // List of branches to benchmark. If not provided, defaults to "master"
     // (for git) or "default" (for mercurial).
-    // "branches": ["master"], // for git
+    "branches": ["asv_benchmark_test"], // for git
     // "branches": ["default"],    // for mercurial
 
     // The DVCS being used.  If not set, it will be automatically
     // determined from "repo" by looking at the protocol in the URL
     // (if remote), or by looking for special directories, such as
     // ".git" (if local).
-    // "dvcs": "git",
+    "dvcs": "git",
 
     // The tool to use to create environments.  May be "conda",
     // "virtualenv" or other value depending on the plugins in use.
@@ -71,11 +71,12 @@
     // pip (with all the conda available packages installed first,
     // followed by the pip installed packages).
     //
-    // "matrix": {
-    //     "numpy": ["1.6", "1.7"],
-    //     "six": ["", null],        // test with and without six installed
-    //     "pip+emcee": [""],   // emcee is only available for install with pip.
-    // },
+    "matrix": {
+        "packaging": [],
+        // "numpy": ["1.6", "1.7"],
+        // "six": ["", null],        // test with and without six installed
+        // "pip+emcee": [""],   // emcee is only available for install with pip.
+    },
 
     // Combinations of libraries/python versions can be excluded/included
     // from the set to test. Each entry is a dictionary containing additional
