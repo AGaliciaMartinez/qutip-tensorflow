@@ -1,36 +1,22 @@
-# Write the benchmarking functions here.
-# See "Writing benchmarks" in the asv docs for more information.
+import qutip as qt
+import numpy as np
 
-
-class TimeSuite:
+class TimeLA:
     """
-    An example benchmark that times the performance of various kinds
-    of iterating over dictionaries in Python.
+    Minimal linear algebra benchmark.
     """
-    def setup(self):
-        self.d = {}
-        for x in range(500):
-            self.d[x] = None
+    params = [1,10,100, 1000]
 
-    def time_keys(self):
-        for key in self.d.keys():
-            pass
-
-    def time_iterkeys(self):
-        for key in self.d.iterkeys():
-            pass
-
-    def time_range(self):
-        d = self.d
-        for key in range(500):
-            x = d[key]
-
-    def time_xrange(self):
-        d = self.d
-        for key in xrange(500):
-            x = d[key]
+    def setup(self, N):
+        self.U = qt.rand_unitary(N)
 
 
-class MemSuite:
-    def mem_list(self):
-        return [0] * 256
+    def time_multiplication_qt(self, N):
+        U = self.U
+        for i in range(2):
+            U*U
+
+    def time_multiplication_np(self, N):
+        U = self.U
+        for i in range(2):
+            np.matmul(U.full(), U.full())
